@@ -1,0 +1,23 @@
+<h1>📚 Quản lý Sách</h1>
+<p>Số lần bạn truy cập (lưu trong session trên Atlas): <b>{{visits}}</b></p>
+{{#if msg}}<div class="msg">{{msg}}</div>{{/if}}
+
+<h3>Thêm sách (mã SP phải bắt đầu bằng {{footer.prefix}})</h3>
+<form method="POST" action="/books">
+  <input name="maSP" placeholder="Mã SP, vd: {{footer.prefix}}001" required>
+  <input name="tenSach" placeholder="Tên sách" required>
+  <input name="giaGoc" type="number" placeholder="Giá gốc" required>
+  <button type="submit">Thêm</button>
+</form>
+
+<h3>Danh sách</h3>
+<table>
+  <tr><th>Mã SP</th><th>Tên sách</th><th>Giá gốc</th><th>VAT</th><th>Giá sau thuế</th></tr>
+  {{#each books}}
+  <tr>
+    <td>{{maSP}}</td><td>{{tenSach}}</td><td>{{giaGoc}}</td><td>{{vat}}%</td><td>{{giaSauThue}}</td>
+  </tr>
+  {{else}}
+  <tr><td colspan="5">Chưa có sách</td></tr>
+  {{/each}}
+</table>
